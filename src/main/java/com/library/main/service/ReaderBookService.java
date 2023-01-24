@@ -20,9 +20,22 @@ public class ReaderBookService {
 		readerBookRepository.save(readerBook);
 	}
 
+
+	public List<ReaderBook> getReadersByBookId(int bid) {
+		List<ReaderBook> list = readerBookRepository.findAll();
+		List<ReaderBook> filteredlist =	list.stream()
+											.filter(e->e.getBook().getId()==bid)
+											.collect(Collectors.toList());
+		return filteredlist;
+	}
+
+
+
+
 	public List<ReaderBook> getReaderBookById(int bid) {
 		
 		return readerBookRepository.findAll().stream().filter(r->r.getBook().getId()==bid).collect(Collectors.toList());
 	}
+
 
 }
