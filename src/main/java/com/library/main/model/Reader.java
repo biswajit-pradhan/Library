@@ -15,6 +15,12 @@ public class Reader {
 	private int id;
 	@Column(name="reader_name")
 	private String name;
+	public Reader () {}
+	public Reader(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	public int getId() {
 		return id;
 	}
@@ -31,10 +37,6 @@ public class Reader {
 	public String toString() {
 		return "Reader [id=" + id + ", name=" + name + "]";
 	}
-	public Reader(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-	public Reader() {}
+	
+	
 }
