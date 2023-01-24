@@ -24,8 +24,18 @@ public class ReaderService {
 	}
 
 	public Optional<Reader> getReaderById(int readerId) {
-		Optional<Reader> optional = readerRepository.findById(readerId);
+		Optional optional = readerRepository.findById(readerId);
 		return optional;
+	}
+
+	public void updateReader(Reader reader) {
+		readerRepository.save(reader);
+		
+	}
+
+	public void deleteReader(int rid) {
+		readerRepository.deleteById(rid);
+		
 	}
 
 }
