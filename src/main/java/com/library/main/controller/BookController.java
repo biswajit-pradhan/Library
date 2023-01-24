@@ -77,10 +77,9 @@ public class BookController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid publisher Id Given");
 		
 		Book book = optional.get();
-		return ResponseEntity.status(HttpStatus.OK).body(book);
-		
+		return ResponseEntity.status(HttpStatus.OK).body(book);	
 	}
-	
+	/* get book by author id */
 	
 
 }
