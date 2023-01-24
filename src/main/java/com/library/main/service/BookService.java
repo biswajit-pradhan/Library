@@ -1,5 +1,8 @@
 package com.library.main.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,26 @@ public class BookService {
 	public void postBook(Book book) {
 		
 		bookRepository.save(book);
+	}
+
+	public List<Book> getAllBook() {
+		// TODO Auto-generated method stub
+		return bookRepository.findAll();
+	}
+
+	public Optional<Book> getBookByID(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteBookById(int bid) {
+		 bookRepository.deleteById(bid);
+		
+	}
+
+	public void updateBook(Book book) {
+		bookRepository.save(book);
+		
 	}
 
 }
