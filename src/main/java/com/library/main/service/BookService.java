@@ -42,7 +42,7 @@ public class BookService {
 	}
 
 	public Optional<Book> getBookByPublisherId(int id) {
-		Optional optional = bookRepository.findById(id);
+		Optional<Book> optional = bookRepository.findByPublisherId(id);
 		return optional;
 	}
 
