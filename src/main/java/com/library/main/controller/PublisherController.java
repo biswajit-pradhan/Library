@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-=======
-import com.library.main.data.PublisherRepository;
->>>>>>> d8583e82b587b949479ca39a2afab08397e0db77
 import com.library.main.model.Publisher;
 import com.library.main.service.PublisherService;
 

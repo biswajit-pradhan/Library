@@ -32,7 +32,7 @@ public class BookController {
 
 	@PostMapping("/add/{pid}")
 	public ResponseEntity<String> postBook(@RequestBody Book book, @PathVariable("pid") int pid) {
-		Publisher publisher = publisherService.getPublisherById(pid).get();
+		Publisher publisher = (Publisher) publisherService.getPublisherById(pid).get();
 		book.setPublisher(publisher);
 		bookService.postBook(book);
 		return ResponseEntity.status(HttpStatus.OK).body("Book added");
@@ -45,19 +45,21 @@ public class BookController {
 	}
 
 	@GetMapping("/one/{bid}")
-	public ResponseEntity<Object> getBookById(@PathVariable("bid") int id) {
-		Optional<Book> optional = bookService.getBookByID(id);
-
-		if (optional == null)
+	public ResponseEntity<Object> getBookById(@PathVariable("bid") int bid) {
+		Optional<Book> optional = bookService.getBookByID(bid);
+		if (!optional.isPresent())
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid book id...");
 		Book book = optional.get();
 		return ResponseEntity.status(HttpStatus.OK).body(book);
 	}
 	
-	@PutMapping("/update/{bid}")
-	public ResponseEntity<String> updateBook(@RequestBody Book book, @PathVariable("pid") int pid) {
-		Publisher publisher = publisherService.getPublisherById(pid).get();
+	@PutMapping("/update/{pid}/{bid}")
+	public ResponseEntity<String> updateBook(@RequestBody Book bookToUpdate, @PathVariable("pid") int pid,@PathVariable("bid") int bid) {
+		Publisher publisher = (Publisher) publisherService.getPublisherById(pid).get();
+		Book book=(Book) bookService.getBookByID(bid).get();
 		book.setPublisher(publisher);
+		book.setName(bookToUpdate.getName());
+		book.setPrice(bookToUpdate.getPrice());
 		bookService.updateBook(book);
 		return ResponseEntity.status(HttpStatus.OK).body("Book updated");
 	}

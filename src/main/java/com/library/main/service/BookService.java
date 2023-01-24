@@ -24,9 +24,9 @@ public class BookService {
 		return bookRepository.findAll();
 	}
 
-	public Optional<Book> getBookByID(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Book> getBookByID(int bid) {
+		Optional optional =  bookRepository.findById(bid);
+		return optional;
 	}
 
 	public void deleteBookById(int bid) {

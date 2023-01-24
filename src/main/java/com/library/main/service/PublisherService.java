@@ -26,9 +26,7 @@ public class PublisherService {
 	}
 
 	public Optional getPublisherById(int id) {
-		Optional<Publisher> optional = publisherRepository.findById(id);
-		
-		
+		Optional<Publisher> optional = publisherRepository.findById(id);		
 		return optional;
 	}
 
