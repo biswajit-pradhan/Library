@@ -1,6 +1,6 @@
 package com.library.main.controller;
 
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -54,9 +54,11 @@ public class ReaderBookController {
 		return ResponseEntity.status(HttpStatus.OK).body("book is assigned to reader");
 	}
 	
+
 	@GetMapping("/readers/{bid}")
 	public List<ReaderBook> getReadersByBookId(@PathVariable("bid") int bid){
 		List<ReaderBook> list =readerBookService.getReadersByBookId(bid);
 		return list;
 	}
+
 }
