@@ -1,5 +1,4 @@
 package com.library.main.service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +25,22 @@ public class PublisherService {
 		
 	}
 
-	public Optional<Publisher> getPublisherById(int id) {
-		Optional<Publisher> optional = publisherRepository.findById(id);
+	public Optional getPublisherById(int id) {
+		Optional<Publisher> optional = publisherRepository.findById(id);		
 		return optional;
+	}
+
+	public void updatePublisher(Publisher publisher) {
+		publisherRepository.save(publisher);
+		
+		
+	}
+
+	public void deletePublisher(int id) {
+		publisherRepository.deleteById(id);
+		
+		
+		
 	}
 
 	
