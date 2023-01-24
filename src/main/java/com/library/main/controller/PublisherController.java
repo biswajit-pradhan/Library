@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Publisher;
+import com.library.main.service.BookService;
 import com.library.main.service.PublisherService;
 
 @RestController
@@ -24,6 +25,9 @@ public class PublisherController {
 	
 	@Autowired
 	private PublisherService publisherService;
+	
+	@Autowired
+	private BookService bookService;
 	
 	/* Post API for Publisher */
 	@PostMapping("/add")
@@ -62,5 +66,7 @@ public class PublisherController {
 	publisherService.deletePublisher(id);
 		return ResponseEntity.status(HttpStatus.OK).body("publisher deleted from database");
 	}
+	
+	
 	
 }

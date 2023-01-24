@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.main.data.BookRepository;
+import com.library.main.data.PublisherRepository;
 import com.library.main.model.Book;
 @Service
 public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+	
 	
 	public void postBook(Book book) {
 		
@@ -38,5 +40,11 @@ public class BookService {
 		bookRepository.save(book);
 		
 	}
+
+	public Optional<Book> getBookByPublisherId(int id) {
+		Optional optional = bookRepository.findById(id);
+		return optional;
+	}
+
 
 }
