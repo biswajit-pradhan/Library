@@ -1,5 +1,4 @@
 package com.library.main.service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +26,7 @@ public class PublisherService {
 	}
 
 	public Optional getPublisherById(int id) {
-		Optional<Publisher> optional = publisherRepository.findById(id);
-		
-		
+		Optional<Publisher> optional = publisherRepository.findById(id);		
 		return optional;
 	}
 
