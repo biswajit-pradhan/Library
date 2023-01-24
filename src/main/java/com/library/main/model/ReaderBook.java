@@ -16,6 +16,31 @@ public class ReaderBook {
 	private Book book;
 	@ManyToOne
 	private Reader reader;
+	
+	private String date; 
+	
+	private int days;
+	
+	public ReaderBook(int id, Book book, Reader reader, String date, int days) {
+		super();
+		this.id = id;
+		this.book = book;
+		this.reader = reader;
+		this.date=date;
+		this.days = days;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
 	public int getId() {
 		return id;
 	}
@@ -36,13 +61,8 @@ public class ReaderBook {
 	}
 	@Override
 	public String toString() {
-		return "ReaderBook [id=" + id + ", book=" + book + ", reader=" + reader + "]";
-	}
-	public ReaderBook(int id, Book book, Reader reader) {
-		super();
-		this.id = id;
-		this.book = book;
-		this.reader = reader;
+		return "ReaderBook [id=" + id + ", book=" + book + ", reader=" + reader + ", date=" + date + ", days=" + days
+				+ "]";
 	}
 	public ReaderBook() {}
 }

@@ -69,5 +69,18 @@ public class BookController {
 		bookService.deleteBookById(bid);
 		return ResponseEntity.status(HttpStatus.OK).body("Book deleted");
 	}
+	/* GetBook by PublisherId */
+	@GetMapping("/publisher/{id}")
+	public ResponseEntity<Object> getBookByPublisherId(@PathVariable("id") int id) {
+		Optional<Book> optional = bookService.getBookByPublisherId(id);
+		if(!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid publisher Id Given");
+		
+		Book book = optional.get();
+		return ResponseEntity.status(HttpStatus.OK).body(book);
+		
+	}
+	
+	
 
 }
