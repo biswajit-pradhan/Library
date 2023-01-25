@@ -2,23 +2,23 @@ package com.library.main.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.main.data.AuthorRepository;
+import com.library.main.data.ReaderBookRepository;
 import com.library.main.data.ReaderRepository;
 import com.library.main.model.Reader;
 @Service
 public class ReaderService {
 	@Autowired
 	private ReaderRepository readerRepository;
-	
 	@Autowired
 	private AuthorRepository authorRepository;
-	
-
+    
+	@Autowired
+	private ReaderBookRepository readerBookRepository;
 
 	public void insertReader(Reader reader) {
 		readerRepository.save(reader);

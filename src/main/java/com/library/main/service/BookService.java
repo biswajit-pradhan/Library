@@ -2,17 +2,23 @@ package com.library.main.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.library.main.data.AuthorRepository;
 import com.library.main.data.BookRepository;
+import com.library.main.model.Author;
 import com.library.main.model.Book;
 
 @Service
 public class BookService {
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@Autowired
+	private AuthorRepository authorRepository;
 
 	public void postBook(Book book) {
 
@@ -39,9 +45,15 @@ public class BookService {
 
 	}
 
-	public Optional<Book> getBookByPublisherId(int id) {
-		Optional<Book> optional = bookRepository.findByPublisherId(id);
-		return optional;
+	public List<Book> getBookByPublisherId(int id) {
+		List<Book> list =bookRepository.findAll();
+				
+		List<Book> filteredList= list.stream()
+				        .filter(e -> e.getPublisher().getId()== id)
+                        .collect(Collectors.toList());
+		
+		
+		return filteredList;
 	}
 
 	public Object getTotalRentByBookId(double bookPrice, int totalDays) {
@@ -58,4 +70,7 @@ public class BookService {
 			return "You can take book rent for maximum 30 days only..";
 		}
 	}
+	
+
+	
 }

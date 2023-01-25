@@ -1,6 +1,5 @@
 package com.library.main.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.library.main.data.ReaderBookRepository;
-import com.library.main.model.Author;
 import com.library.main.model.Book;
 import com.library.main.model.Publisher;
-import com.library.main.model.Reader;
 import com.library.main.model.ReaderBook;
 import com.library.main.service.AuthorService;
 import com.library.main.service.BookService;
@@ -42,9 +38,6 @@ public class BookController {
 	
 	@Autowired
 	private AuthorService authorService;
-	
-	@Autowired
-	private ReaderBookRepository readerBookRepository;
 
 	@PostMapping("/add/{pid}")
 	public ResponseEntity<String> postBook(@RequestBody Book book, @PathVariable("pid") int pid) {
@@ -87,13 +80,9 @@ public class BookController {
 	}
 	/* GetBook by PublisherId */
 	@GetMapping("/publisher/{id}")
-	public ResponseEntity<Object> getBookByPublisherId(@PathVariable("id") int id) {
-		Optional<Book> optional = bookService.getBookByPublisherId(id);
-		if(!optional.isPresent())
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid publisher Id Given");
-		
-		Book book = optional.get();
-		return ResponseEntity.status(HttpStatus.OK).body(book);	
+	public List<Book> getBookByPublisherId(@PathVariable("id") int id){
+		 List<Book> list = bookService.getBookByPublisherId(id);
+		return list;
 	}
 	
 	
