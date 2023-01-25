@@ -71,10 +71,4 @@ public class AuthorController {
 		authorService.deleteAuhorById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("author deleted from database");
 	}
-	/* GetBook by Author */
-	@GetMapping("/author/{aid}")
-	public List<Book> getBookByAuthorId(@PathVariable("aid") int aid){
-		 List<Book> list = authorService.getBookByPublisherId(id);
-		return list;
-	}
 }
