@@ -58,4 +58,34 @@ public class ReaderBookService {
 	}
 
 
+	public Double getTotalRentByReaderId(int rid) {
+		List<ReaderBook> list = readerBookRepository.findAll();
+		
+		double bookSum=0;
+		double daysSum=0;
+		
+		
+		List<Double> bookPrices = list.stream()
+						.filter(e->e.getReader().getId()==rid)
+						.map(e->e.getBook().getPrice())
+						.collect(Collectors.toList());
+		
+		for(Double p:bookPrices) {
+			bookSum +=p;
+		}
+		List<Integer> noOfDays = list.stream()
+				.filter(e->e.getReader().getId()==rid)
+				.map(e->e.getDays())
+				.collect(Collectors.toList());
+		
+		
+		
+		for(Integer i:noOfDays) {
+			daysSum+=i;
+		}
+		double res = (bookSum)*(daysSum)*2/100;
+		return res;
+	}
+
+
 }

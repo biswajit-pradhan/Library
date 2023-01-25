@@ -82,5 +82,11 @@ public class ReaderBookController {
 		readerBookService.deleteReaderBookById(rbid);
 		return ResponseEntity.status(HttpStatus.OK).body("ReaderBook deleted");
 	}
+	
+	@GetMapping("/totalrent/reader/{rid}")
+	public Double getTotalRentByReaderId(@PathVariable("rid") int rid) {
+		Double totalprice = readerBookService.getTotalRentByReaderId(rid);
+		return totalprice;
+	}
 
 }
