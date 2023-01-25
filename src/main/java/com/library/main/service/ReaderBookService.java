@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.library.main.data.ReaderBookRepository;
+import com.library.main.model.Book;
 import com.library.main.model.ReaderBook;
 
 @Service
@@ -28,6 +30,8 @@ public class ReaderBookService {
 											.collect(Collectors.toList());
 		return filteredlist;
 	}
+	
+
 
 
 
@@ -36,6 +40,18 @@ public class ReaderBookService {
 		
 		return readerBookRepository.findAll().stream().filter(r->r.getBook().getId()==bid).collect(Collectors.toList());
 	}
+
+
+	public List<Book> getBookByReaderId(int rid) {
+		List<ReaderBook>list=readerBookRepository.findAll();
+		
+		List<Book>filteredList=list.stream().filter(e->e.getReader().getId()==rid)
+													.map(e->e.getBook()).collect(Collectors.toList());
+		return filteredList;
+	}      
+	
+	
+	
 
 
 }

@@ -60,5 +60,13 @@ public class ReaderBookController {
 		List<ReaderBook> list =readerBookService.getReadersByBookId(bid);
 		return list;
 	}
+	
+
+	/*Get book by Reader Id*/
+	@GetMapping("/reader/{rid}")
+	public List<Book> getBookbyReaderId(@PathVariable("rid")int rid){
+		List<Book>list= readerBookService.getBookByReaderId(rid);
+		return list;
+	}
 
 }

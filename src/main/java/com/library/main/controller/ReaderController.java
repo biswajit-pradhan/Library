@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Reader;
+import com.library.main.model.ReaderBook;
+import com.library.main.service.ReaderBookService;
 import com.library.main.service.ReaderService;
 
 @RestController
@@ -24,6 +26,10 @@ public class ReaderController {
 	
 	@Autowired
 	private ReaderService readerService;
+	
+	@Autowired
+	private ReaderBookService readerBookService;
+	
 	
 	@PostMapping("/add")
 	public ResponseEntity<String> insertReader(@RequestBody Reader reader){
@@ -58,4 +64,7 @@ public class ReaderController {
 		readerService.deleteReader(rid);
 		return ResponseEntity.status(HttpStatus.OK).body("Reader deleted");
 	}
+	
+	
+
 }
