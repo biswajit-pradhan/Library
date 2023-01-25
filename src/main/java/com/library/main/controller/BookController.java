@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Book;
 import com.library.main.model.Publisher;
+import com.library.main.model.ReaderBook;
 import com.library.main.service.BookService;
 import com.library.main.service.PublisherService;
+import com.library.main.service.ReaderBookService;
 
 @RestController
 @RequestMapping(value = "/api/book")
@@ -29,6 +31,9 @@ public class BookController {
 
 	@Autowired
 	private PublisherService publisherService;
+	
+	@Autowired
+	private ReaderBookService readerBookService;
 
 	@PostMapping("/add/{pid}")
 	public ResponseEntity<String> postBook(@RequestBody Book book, @PathVariable("pid") int pid) {
@@ -77,10 +82,21 @@ public class BookController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid publisher Id Given");
 		
 		Book book = optional.get();
-		return ResponseEntity.status(HttpStatus.OK).body(book);
-		
+		return ResponseEntity.status(HttpStatus.OK).body(book);	
 	}
+	/* get book by author id */
 	
+	@GetMapping("/gettotalrentbybookid/{bid}")
+	public ResponseEntity<Object> getTotalRentByBookId(@PathVariable("bid") int bid) {
+		Optional<Book> optional = bookService.getBookByID(bid);
+		if (!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid book id...");
+		Book book = optional.get();
+		List<ReaderBook> readerBook=readerBookService.getReaderBookById(bid);
+		int totalDays=readerBook.get(0).getDays();
+		Object totalCost=bookService.getTotalRentByBookId(book.getPrice(),totalDays);
+		return ResponseEntity.status(HttpStatus.OK).body(totalCost);
+	}
 	
 
 }
