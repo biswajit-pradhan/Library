@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.main.data.AuthorRepository;
+import com.library.main.data.ReaderRepository;
 import com.library.main.model.Author;
-import com.library.main.model.Book;
 import com.library.main.model.Reader;
 
 @Service
 public class AuthorService {
 	@Autowired
 	private AuthorRepository authorRepository;
+	
+	@Autowired
+	private ReaderRepository readerRepository;
 	
 	public void insertAuthor(Author author) {
 
@@ -43,13 +46,7 @@ public class AuthorService {
 		
 	}
 
-	public List<Reader> getReadersByAuthorId(int aid) {
-		List<Author> list = authorRepository.findAll();
-//		List<Author>	booksByAutherId = list.stream()
-//							.filter(e->e.getBook().)
-//							.collect(Collectors.toList());
-		return null;
-	}
+
 	
 
 }
