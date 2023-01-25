@@ -37,6 +37,7 @@ public class ReaderController {
 		return list;
 	}
 	
+	
 	@GetMapping("/one/reader/{rid}")
 	public ResponseEntity<Object> getById(@PathVariable("rid")int rid){
 		Optional<Reader> optional = readerService.getReaderById(rid);
@@ -62,5 +63,11 @@ public class ReaderController {
 //	@GetMapping("/book/{rid}")
 //	public List<Book> getBookByReaderId(@PathVariable("rid") int rid){
 //		return readerService.getBookByReaderId(rid);
+//	}
+/* TotalRent By readerId */
+	
+//	@GetMapping("/totalrent/{rid}")
+//	public Double getTotalRentByReaderId(@PathVariable("rid") int rid) {
+//		return readerService. getTotalRentByReaderId(rid);
 //	}
 }

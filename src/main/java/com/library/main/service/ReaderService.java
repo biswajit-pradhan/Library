@@ -41,4 +41,9 @@ public class ReaderService {
 		
 	}
 
+//	public Double getTotalRentByReaderId(int rid) {
+//		Optional<Reader> reader = readerRepository.findById(rid);
+//		return reader;
+//	}
+
 }
