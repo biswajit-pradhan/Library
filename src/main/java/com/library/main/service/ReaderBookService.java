@@ -32,11 +32,6 @@ public class ReaderBookService {
 											.collect(Collectors.toList());
 		return filteredlist;
 	}
-	
-
-
-
-
 
 	public List<ReaderBook> getReaderBookById(int bid) {
 		
