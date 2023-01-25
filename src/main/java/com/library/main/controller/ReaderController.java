@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.library.main.data.AuthorRepository;
 import com.library.main.data.ReaderBookRepository;
 import com.library.main.model.Author;
 import com.library.main.model.Book;
 import com.library.main.model.Reader;
 import com.library.main.service.AuthorService;
+import com.library.main.service.ReaderBookService;
 import com.library.main.service.ReaderService;
 
 @RestController
@@ -32,6 +32,7 @@ public class ReaderController {
 	private ReaderService readerService;
 	
 	@Autowired
+	private ReaderBookService readerBookService;
 	private AuthorService authorService;
 	
 	@Autowired
@@ -70,6 +71,7 @@ public class ReaderController {
 		readerService.deleteReader(rid);
 		return ResponseEntity.status(HttpStatus.OK).body("Reader deleted");
 	}
+
 	
 	//Get reader by Author Id
 	@GetMapping("/author/{aid}")
