@@ -7,12 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.main.data.AuthorRepository;
+import com.library.main.data.ReaderRepository;
 import com.library.main.model.Author;
+import com.library.main.model.Reader;
 
 @Service
 public class AuthorService {
 	@Autowired
 	private AuthorRepository authorRepository;
+	
+	@Autowired
+	private ReaderRepository readerRepository;
 	
 	public void insertAuthor(Author author) {
 
@@ -39,6 +44,10 @@ public class AuthorService {
 		authorRepository.deleteById(id);
 		
 	}
+
+//	public List<Reader> getReadersByAuthorId(int aid) {
+//		return readerRepository.findByAuthorId(aid);
+//	}
 	
 
 }

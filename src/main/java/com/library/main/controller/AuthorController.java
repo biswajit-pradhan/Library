@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Author;
 import com.library.main.model.Book;
+import com.library.main.model.Reader;
 import com.library.main.service.AuthorService;
 import com.library.main.service.BookService;
 
@@ -71,5 +72,14 @@ public class AuthorController {
 		authorService.deleteAuhorById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("author deleted from database");
 	}
+	
+//	@GetMapping("/getreadersbyauthorid/{aid}")
+//	public ResponseEntity<Object> getReadersByAuthorId(@PathVariable("aid") int aid){
+//		Optional<Author> optional = authorService.getAuthorById(aid);
+//		if (!optional.isPresent())
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid author id...");
+//		List<Reader> list=authorService.getReadersByAuthorId(aid);
+//		return ResponseEntity.status(HttpStatus.OK).body(list);
+//	}
 	
 }
