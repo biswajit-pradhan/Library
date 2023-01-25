@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.library.main.data.AuthorRepository;
 import com.library.main.data.ReaderBookRepository;
 import com.library.main.data.ReaderRepository;
 import com.library.main.model.Reader;
@@ -13,6 +14,8 @@ import com.library.main.model.Reader;
 public class ReaderService {
 	@Autowired
 	private ReaderRepository readerRepository;
+	@Autowired
+	private AuthorRepository authorRepository;
     
 	@Autowired
 	private ReaderBookRepository readerBookRepository;
@@ -54,6 +57,13 @@ public class ReaderService {
 		} else {
 			return "You can take book rent for maximum 30 days only..";
 		}
+	}
+
+	public List<Reader>  getReadersByAuthorId(int aid) {
+		//List<Reader> list=readerRepository.findAll();
+		//List<Reader> filteredList= list.stream().filter(e->e.getId()== aid).collect(Collectors.toList());
+		
+		  return  getReadersByAuthorId(aid);
 	}
 
 }
