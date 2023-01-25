@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.library.main.model.Author;
 import com.library.main.model.Book;
 import com.library.main.model.Publisher;
 import com.library.main.model.ReaderBook;
+import com.library.main.service.AuthorService;
 import com.library.main.service.BookService;
 import com.library.main.service.PublisherService;
 import com.library.main.service.ReaderBookService;
@@ -34,6 +36,9 @@ public class BookController {
 	
 	@Autowired
 	private ReaderBookService readerBookService;
+	
+	@Autowired
+	private AuthorService authorService;
 
 	@PostMapping("/add/{pid}")
 	public ResponseEntity<String> postBook(@RequestBody Book book, @PathVariable("pid") int pid) {
@@ -76,15 +81,11 @@ public class BookController {
 	}
 	/* GetBook by PublisherId */
 	@GetMapping("/publisher/{id}")
-	public ResponseEntity<Object> getBookByPublisherId(@PathVariable("id") int id) {
-		Optional<Book> optional = bookService.getBookByPublisherId(id);
-		if(!optional.isPresent())
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid publisher Id Given");
-		
-		Book book = optional.get();
-		return ResponseEntity.status(HttpStatus.OK).body(book);	
+	public List<Book> getBookByPublisherId(@PathVariable("id") int id){
+		 List<Book> list = bookService.getBookByPublisherId(id);
+		return list;
 	}
-	/* get book by author id */
+	
 	
 	@GetMapping("/gettotalrentbybookid/{bid}")
 	public ResponseEntity<Object> getTotalRentByBookId(@PathVariable("bid") int bid) {
