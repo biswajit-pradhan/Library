@@ -64,7 +64,4 @@ public class ReaderController {
 		readerService.deleteReader(rid);
 		return ResponseEntity.status(HttpStatus.OK).body("Reader deleted");
 	}
-	
-	
-
 }

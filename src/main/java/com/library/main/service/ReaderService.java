@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.library.main.data.BookRepository;
 import com.library.main.data.ReaderRepository;
 import com.library.main.model.Book;
 import com.library.main.model.Reader;
@@ -15,8 +14,6 @@ import com.library.main.model.Reader;
 public class ReaderService {
 	@Autowired
 	private ReaderRepository readerRepository;
-	
-
 
 	public void insertReader(Reader reader) {
 		readerRepository.save(reader);

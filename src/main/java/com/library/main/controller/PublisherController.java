@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.library.main.model.Book;
 import com.library.main.model.Publisher;
+import com.library.main.model.ReaderBook;
 import com.library.main.service.BookService;
 import com.library.main.service.PublisherService;
+import com.library.main.service.ReaderBookService;
 
 @RestController
 @RequestMapping("/api/publisher")
@@ -28,6 +31,9 @@ public class PublisherController {
 	
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private ReaderBookService readerBookService;
 	
 	/* Post API for Publisher */
 	@PostMapping("/add")
@@ -67,6 +73,7 @@ public class PublisherController {
 		return ResponseEntity.status(HttpStatus.OK).body("publisher deleted from database");
 	}
 	
+	/* Get TotalRent By PublisherId */
 	
 	
 }
