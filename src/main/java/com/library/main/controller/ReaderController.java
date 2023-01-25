@@ -1,5 +1,6 @@
 package com.library.main.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.library.main.data.AuthorRepository;
+import com.library.main.data.ReaderBookRepository;
+import com.library.main.model.Author;
+import com.library.main.model.Book;
 import com.library.main.model.Reader;
+import com.library.main.service.AuthorService;
 import com.library.main.service.ReaderService;
 
 @RestController
@@ -24,6 +30,12 @@ public class ReaderController {
 	
 	@Autowired
 	private ReaderService readerService;
+	
+	@Autowired
+	private AuthorService authorService;
+	
+	@Autowired
+	private ReaderBookRepository readerBookRepository;
 	
 	@PostMapping("/add")
 	public ResponseEntity<String> insertReader(@RequestBody Reader reader){
@@ -57,5 +69,24 @@ public class ReaderController {
 	public ResponseEntity<String> deleteReader(@PathVariable("rid")int rid) {
 		readerService.deleteReader(rid);
 		return ResponseEntity.status(HttpStatus.OK).body("Reader deleted");
+	}
+	
+	//Get reader by Author Id
+	@GetMapping("/author/{aid}")
+	public ResponseEntity<Object> getReadersByAuthorId(@PathVariable("aid") int aid){
+		List<Reader> list=new ArrayList<>();
+		Optional<Author> optional = authorService.getAuthorById(aid);
+		if(!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Reader ID Given");
+		
+		Author author = optional.get();
+		List<Book> bookList=author.getBook();
+		bookList.stream().forEach(b->{
+		List<Reader> rList=	readerBookRepository.getByBookId(b.getId());
+		list.addAll(rList);
+		});
+		//List<Reader> list=readerService.getReadersByAuthorId(aid);
+		return ResponseEntity.status(HttpStatus.OK).body(list);
+		
 	}
 }
