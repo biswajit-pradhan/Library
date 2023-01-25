@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Author;
 import com.library.main.model.Book;
+import com.library.main.model.Reader;
 import com.library.main.service.AuthorService;
 import com.library.main.service.BookService;
 
@@ -71,10 +72,5 @@ public class AuthorController {
 		authorService.deleteAuhorById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("author deleted from database");
 	}
-	/* GetBook by Author */
-	@GetMapping("/author/{aid}")
-	public List<Book> getBookByAuthorId(@PathVariable("aid") int aid){
-		 List<Book> list = authorService.getBookByPublisherId(id);
-		return list;
-	}
+
 }
