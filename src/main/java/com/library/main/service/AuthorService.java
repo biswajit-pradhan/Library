@@ -43,13 +43,7 @@ public class AuthorService {
 		
 	}
 
-	public List<Reader> getReadersByAuthorId(int aid) {
-		List<Author> list = authorRepository.findAll();
-//		List<Author>	booksByAutherId = list.stream()
-//							.filter(e->e.getBook().)
-//							.collect(Collectors.toList());
-		return null;
-	}
+	
 	
 
 }
