@@ -2,12 +2,15 @@ package com.library.main.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.library.main.data.AuthorRepository;
 import com.library.main.model.Author;
+import com.library.main.model.Book;
+import com.library.main.model.Reader;
 
 @Service
 public class AuthorService {
@@ -38,6 +41,14 @@ public class AuthorService {
 	public void deleteAuhorById(int id) {
 		authorRepository.deleteById(id);
 		
+	}
+
+	public List<Reader> getReadersByAuthorId(int aid) {
+		List<Author> list = authorRepository.findAll();
+//		List<Author>	booksByAutherId = list.stream()
+//							.filter(e->e.getBook().)
+//							.collect(Collectors.toList());
+		return null;
 	}
 	
 
