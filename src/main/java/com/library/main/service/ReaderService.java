@@ -6,13 +6,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.library.main.data.ReaderBookRepository;
 import com.library.main.data.ReaderRepository;
 import com.library.main.model.Reader;
 @Service
 public class ReaderService {
 	@Autowired
 	private ReaderRepository readerRepository;
-
+    
+	@Autowired
+	private ReaderBookRepository readerBookRepository;
 
 	public void insertReader(Reader reader) {
 		readerRepository.save(reader);
