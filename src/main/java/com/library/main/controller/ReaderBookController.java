@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,11 +55,32 @@ public class ReaderBookController {
 		return ResponseEntity.status(HttpStatus.OK).body("book is assigned to reader");
 	}
 	
-
-	@GetMapping("/readers/{bid}")
-	public List<ReaderBook> getReadersByBookId(@PathVariable("bid") int bid){
-		List<ReaderBook> list =readerBookService.getReadersByBookId(bid);
+	@GetMapping("/allReaderBook")
+	public List<ReaderBook> getAllReaderBook() {
+		List<ReaderBook> list = readerBookService.getAllReaderBook();
 		return list;
+		
+	}
+	
+	@GetMapping("/one/{rbid}")
+	public ResponseEntity<Object> getReaderBookById(@PathVariable("rbid") int rbid) {
+		Optional<ReaderBook> optional = readerBookService.getReaderBookByID(rbid);
+		if (!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid IDs Given");
+		ReaderBook readerBook = optional.get();
+		return ResponseEntity.status(HttpStatus.OK).body(readerBook);
+	}
+
+	@GetMapping("/readers/{rbid}")
+	public List<Reader> getReadersByBookId(@PathVariable("rbid") int rbid){
+		List<Reader> list =readerBookService.getReadersByBookId(rbid);
+		return list;
+	}
+	
+	@DeleteMapping("/delete/{rbid}")
+	public ResponseEntity<String> deleteReader(@PathVariable("rbid") int rbid) {
+		readerBookService.deleteReaderBookById(rbid);
+		return ResponseEntity.status(HttpStatus.OK).body("ReaderBook deleted");
 	}
 	
 

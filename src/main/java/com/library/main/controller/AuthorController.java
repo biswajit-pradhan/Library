@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Author;
 import com.library.main.model.Book;
+import com.library.main.model.Reader;
 import com.library.main.service.AuthorService;
 import com.library.main.service.BookService;
 
