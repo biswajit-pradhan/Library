@@ -32,6 +32,8 @@ public class ReaderBookService {
 											.collect(Collectors.toList());
 		return filteredlist;
 	}
+	
+
 
 
 
@@ -56,6 +58,7 @@ public class ReaderBookService {
 		readerBookRepository.deleteById(rbid);
 
 	}
+
 
 
 	public Double getTotalRentByReaderId(int rid) {
@@ -86,6 +89,18 @@ public class ReaderBookService {
 		double res = (bookSum)*(daysSum)*2/100;
 		return res;
 	}
+
+	public List<Book> getBookByReaderId(int rid) {
+		List<ReaderBook>list=readerBookRepository.findAll();
+		
+		List<Book>filteredList=list.stream().filter(e->e.getReader().getId()==rid)
+													.map(e->e.getBook()).collect(Collectors.toList());
+		return filteredList;
+	}      
+	
+	
+	
+
 
 
 }
