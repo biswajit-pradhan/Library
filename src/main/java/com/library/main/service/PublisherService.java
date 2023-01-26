@@ -54,6 +54,7 @@ public class PublisherService {
 		publisherRepository.deleteById(id);
 	}
 
+
 	public Object getTotalRentByPublisherId(int pid, List<Book> book) {
 		List<ReaderBook> list = readerBookRepository.findAll();
 		double totalPrice = 0;
