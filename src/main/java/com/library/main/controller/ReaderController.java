@@ -20,7 +20,6 @@ import com.library.main.data.ReaderBookRepository;
 import com.library.main.model.Author;
 import com.library.main.model.Book;
 import com.library.main.model.Reader;
-import com.library.main.model.ReaderBook;
 import com.library.main.service.AuthorService;
 import com.library.main.service.ReaderBookService;
 import com.library.main.service.ReaderService;
@@ -34,6 +33,8 @@ public class ReaderController {
 	
 	@Autowired
 	private ReaderBookService readerBookService;
+	
+	@Autowired
 	private AuthorService authorService;
 	
 	@Autowired
