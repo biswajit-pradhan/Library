@@ -59,11 +59,15 @@ public class ReaderService {
 		}
 	}
 
+
+
+
 	public List<Reader>  getReadersByAuthorId(int aid) {
 		//List<Reader> list=readerRepository.findAll();
 		//List<Reader> filteredList= list.stream().filter(e->e.getId()== aid).collect(Collectors.toList());
 		
 		  return  getReadersByAuthorId(aid);
 	}
+
 
 }
