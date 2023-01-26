@@ -33,7 +33,7 @@ public class ReaderBookService {
 		return filteredlist;
 	}
 
-	public List<ReaderBook> getReaderBookById(int bid) {
+	public List<ReaderBook> getReaderBookById_book(int bid) {
 		
 		return readerBookRepository.findAll().stream().filter(r->r.getBook().getId()==bid).collect(Collectors.toList());
 	}
