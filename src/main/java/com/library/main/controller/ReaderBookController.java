@@ -105,11 +105,18 @@ public class ReaderBookController {
 }
 	
 
+	@GetMapping("/totalrent/reader/{rid}")
+	public Double getTotalRentByReaderId(@PathVariable("rid") int rid) {
+		Double totalprice = readerBookService.getTotalRentByReaderId(rid);
+		return totalprice;
+	}
+
 	/*Get book by Reader Id*/
 	@GetMapping("/reader/{rid}")
 	public List<Book> getBookbyReaderId(@PathVariable("rid")int rid){
 		List<Book>list= readerBookService.getBookByReaderId(rid);
 		return list;
+
 	}
 
 }
