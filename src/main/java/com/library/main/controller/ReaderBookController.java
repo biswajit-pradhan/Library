@@ -1,6 +1,7 @@
 package com.library.main.controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,7 @@ public class ReaderBookController {
 		
 		readerBook.setReader(reader);
 		readerBook.setBook(book);
+		readerBook.setDate(LocalDate.now());
 		
 		readerBookService.assign(readerBook);
 		return ResponseEntity.status(HttpStatus.OK).body("book is assigned to reader");
