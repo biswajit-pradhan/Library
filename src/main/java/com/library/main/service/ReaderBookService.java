@@ -98,6 +98,13 @@ public class ReaderBookService {
 		List<Book>filteredList=list.stream().filter(e->e.getReader().getId()==rid)
 													.map(e->e.getBook()).collect(Collectors.toList());
 		return filteredList;
+	}
+
+
+	public Optional<ReaderBook> getReaderBookId(int rbid) {
+
+
+		return readerBookRepository.findById(rbid);
 	}      
 	
 	
