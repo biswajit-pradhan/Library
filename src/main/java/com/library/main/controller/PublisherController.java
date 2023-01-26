@@ -75,5 +75,16 @@ public class PublisherController {
 	
 	/* Get TotalRent By PublisherId */
 	
+	@GetMapping("/gettotalrentbypublisherid/{pid}")
+	public ResponseEntity<Object> getTotalRentByPublisherId(@PathVariable("pid") int pid) {
+		Optional<Publisher> optional = publisherService.getPublisherById(pid);
+		if (!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid ID Given");
+		//Publisher publisher = optional.get();
+		List<Book> book=bookService.getAllBook();
+		Object totalCost=publisherService.getTotalRentByPublisherId(pid,book);
+		return ResponseEntity.status(HttpStatus.OK).body(totalCost);
+	}
+	
 	
 }
