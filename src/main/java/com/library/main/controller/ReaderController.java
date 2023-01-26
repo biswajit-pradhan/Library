@@ -94,7 +94,5 @@ public class ReaderController {
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 		
 	}
-	
-	/* GetTotalRent By ReaderId */
 
 }
