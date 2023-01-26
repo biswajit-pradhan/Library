@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -19,6 +20,8 @@ public class Author {
 	private String name;
 	@ManyToMany
 	private List<Book> book;
+	@OneToOne
+	private User user;
 	public int getId() {
 		return id;
 	}
@@ -37,15 +40,24 @@ public class Author {
 	public void setBook(List<Book> book) {
 		this.book = book;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Author() {}
 	@Override
 	public String toString() {
-		return "Author [id=" + id + ", name=" + name + ", book=" + book + "]";
+		return "Author [id=" + id + ", name=" + name + ", book=" + book + ", user=" + user + "]";
 	}
-	public Author(int id, String name, List<Book> book) {
+	public Author(int id, String name, List<Book> book, User user) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.book = book;
+		this.user = user;
 	}
-	public Author() {}
+	
 }

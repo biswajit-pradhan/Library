@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.data.ReaderBookRepository;
+import com.library.main.data.UserRepository;
 import com.library.main.model.Author;
 import com.library.main.model.Book;
 import com.library.main.model.Reader;
+import com.library.main.model.User;
 import com.library.main.service.AuthorService;
 import com.library.main.service.ReaderBookService;
 import com.library.main.service.ReaderService;
@@ -32,6 +35,12 @@ public class ReaderController {
 	private ReaderService readerService;
 	
 	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private ReaderBookService readerBookService;
 	
 	@Autowired
@@ -42,6 +51,18 @@ public class ReaderController {
 	
 	@PostMapping("/add")
 	public ResponseEntity<String> insertReader(@RequestBody Reader reader){
+		//Fetch User info from employee input and save it in DB 
+				User user = reader.getUser(); //I have username and password 
+				//I will assign the role
+				user.setRole("READER");
+				//Converting plain text password into encoded text
+				String encodedPassword = passwordEncoder.encode(user.getPassword());
+				//attach encoded password to user
+				user.setPassword(encodedPassword);
+				user  = userRepository.save(user);
+				//Attach user object to employee
+				reader.setUser(user);
+		
 		readerService.insertReader(reader);
 		return ResponseEntity.status(HttpStatus.OK).body("Reader posted in DB");
 	}
