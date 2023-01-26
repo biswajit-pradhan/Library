@@ -1,5 +1,7 @@
 package com.library.main.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +19,11 @@ public class ReaderBook {
 	@ManyToOne
 	private Reader reader;
 	
-	private String date; 
+	private LocalDate date; 
 	
 	private int days;
 	
-	public ReaderBook(int id, Book book, Reader reader, String date, int days) {
+	public ReaderBook(int id, Book book, Reader reader, LocalDate date, int days) {
 		super();
 		this.id = id;
 		this.book = book;
@@ -29,10 +31,10 @@ public class ReaderBook {
 		this.date=date;
 		this.days = days;
 	}
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public int getDays() {

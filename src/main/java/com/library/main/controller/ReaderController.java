@@ -104,7 +104,7 @@ public class ReaderController {
 		List<Reader> list=new ArrayList<>();
 		Optional<Author> optional = authorService.getAuthorById(aid);
 		if(!optional.isPresent())
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Reader ID Given");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Author ID Given");
 		
 		Author author = optional.get();
 		List<Book> bookList=author.getBook();
