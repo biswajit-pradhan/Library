@@ -99,7 +99,7 @@ public class BookController {
 		if (!optional.isPresent())
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid book id...");
 		Book book = optional.get();
-		List<ReaderBook> readerBook=readerBookService.getReaderBookById(bid);
+		List<ReaderBook> readerBook=readerBookService.getReaderBookById_book(bid);
 		int totalDays=readerBook.get(0).getDays();
 		Object totalCost=bookService.getTotalRentByBookId(book.getPrice(),totalDays);
 		return ResponseEntity.status(HttpStatus.OK).body(totalCost);

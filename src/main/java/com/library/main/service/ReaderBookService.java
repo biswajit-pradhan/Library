@@ -32,13 +32,8 @@ public class ReaderBookService {
 											.collect(Collectors.toList());
 		return filteredlist;
 	}
-	
 
-
-
-
-
-	public List<ReaderBook> getReaderBookById(int bid) {
+	public List<ReaderBook> getReaderBookById_book(int bid) {
 		
 		return readerBookRepository.findAll().stream().filter(r->r.getBook().getId()==bid).collect(Collectors.toList());
 	}
@@ -60,6 +55,36 @@ public class ReaderBookService {
 	}
 
 
+
+	public Double getTotalRentByReaderId(int rid) {
+		List<ReaderBook> list = readerBookRepository.findAll();
+		
+		double bookSum=0;
+		double daysSum=0;
+		
+		
+		List<Double> bookPrices = list.stream()
+						.filter(e->e.getReader().getId()==rid)
+						.map(e->e.getBook().getPrice())
+						.collect(Collectors.toList());
+		
+		for(Double p:bookPrices) {
+			bookSum +=p;
+		}
+		List<Integer> noOfDays = list.stream()
+				.filter(e->e.getReader().getId()==rid)
+				.map(e->e.getDays())
+				.collect(Collectors.toList());
+		
+		
+		
+		for(Integer i:noOfDays) {
+			daysSum+=i;
+		}
+		double res = (bookSum)*(daysSum)*2/100;
+		return res;
+	}
+
 	public List<Book> getBookByReaderId(int rid) {
 		List<ReaderBook>list=readerBookRepository.findAll();
 		
@@ -70,6 +95,7 @@ public class ReaderBookService {
 	
 	
 	
+
 
 
 }
