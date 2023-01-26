@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -15,6 +16,8 @@ public class Reader {
 	private int id;
 	@Column(name="reader_name")
 	private String name;
+	@OneToOne
+	private User user;
 	public Reader () {}
 	public Reader(int id, String name) {
 		super();
@@ -32,6 +35,12 @@ public class Reader {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	@Override
 	public String toString() {

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -15,6 +16,8 @@ public class Publisher {
 	private int id;
 	@Column(name="publisher_name")
 	private String name;
+	@OneToOne
+	private User user;
 	public int getId() {
 		return id;
 	}
@@ -27,15 +30,22 @@ public class Publisher {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Override
-	public String toString() {
-		return "Publisher [id=" + id + ", name=" + name + "]";
+	public User getUser() {
+		return user;
 	}
-	public Publisher(int id, String name) {
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Publisher() {}
+	public Publisher(int id, String name, User user) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.user = user;
 	}
-	public Publisher() {}
+	@Override
+	public String toString() {
+		return "Publisher [id=" + id + ", name=" + name + ", user=" + user + "]";
+	}
 	
 }
