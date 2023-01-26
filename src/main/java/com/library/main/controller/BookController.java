@@ -92,7 +92,7 @@ public class BookController {
 		return list;
 	}
 	
-	
+	/*getTotalRentByBookId*/
 	@GetMapping("/gettotalrentbybookid/{bid}")
 	public ResponseEntity<Object> getTotalRentByBookId(@PathVariable("bid") int bid) {
 		Optional<Book> optional = bookService.getBookByID(bid);
