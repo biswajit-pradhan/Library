@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.main.model.Author;
 import com.library.main.model.Book;
+<<<<<<< HEAD
 import com.library.main.model.Publisher;
 import com.library.main.model.Reader;
+=======
+>>>>>>> 8b8202e0f4027281468ad5fd3fefdd305e8c4bca
 import com.library.main.service.AuthorService;
 import com.library.main.service.BookService;
 
@@ -74,5 +77,19 @@ public class AuthorController {
 		return ResponseEntity.status(HttpStatus.OK).body("author deleted from database");
 	}
 
+<<<<<<< HEAD
+=======
+	@GetMapping("/gettotalrentbyauthorid/{aid}")
+	public ResponseEntity<Object> getTotalRentByAuthorId(@PathVariable("aid") int aid) {
+		Optional<Author> optional = authorService.getAuthorById(aid);
+		if (!optional.isPresent())
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid ID Given");
+		Author author=optional.get();
+		List<Book> book=author.getBook();
+		Object totalCost=authorService.getTotalRentByAuthorId(book);
+		return ResponseEntity.status(HttpStatus.OK).body(totalCost);
+	}
+
+>>>>>>> 8b8202e0f4027281468ad5fd3fefdd305e8c4bca
 
 }
