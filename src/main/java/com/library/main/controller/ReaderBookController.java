@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -82,6 +83,26 @@ public class ReaderBookController {
 		readerBookService.deleteReaderBookById(rbid);
 		return ResponseEntity.status(HttpStatus.OK).body("ReaderBook deleted");
 	}
+	
+	/* Put Api for ReadeBook */
+	@PutMapping("/edit/{rbid}")
+	public ResponseEntity<String> editReaderBook(@PathVariable("rbid") int rbid,
+			@RequestBody ReaderBook readerBookNew){
+	Optional<ReaderBook> optional =readerBookService.getReaderBookByID(rbid);
+	if (!optional.isPresent())
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid IDs Given");
+	
+	ReaderBook readerbook = optional.get();
+	if(readerBookNew.getDays() != 0)
+		readerbook.setDays(readerBookNew.getDays());
+	if(readerBookNew.getDate() != null)
+		readerbook.setDate(readerBookNew.getDate());
+	
+	
+	
+	readerBookService.assign(readerbook);
+	return ResponseEntity.status(HttpStatus.OK).body("ReaderBook record Edited..");
+}
 	
 
 	/*Get book by Reader Id*/
