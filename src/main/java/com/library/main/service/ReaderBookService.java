@@ -81,8 +81,15 @@ public class ReaderBookService {
 		for(Integer i:noOfDays) {
 			daysSum+=i;
 		}
-		double res = (bookSum)*(daysSum)*2/100;
-		return res;
+		if(daysSum <= 7)
+			return bookSum/10;
+		if(daysSum >7 && daysSum <= 14)
+			return (bookSum/15);
+		if(daysSum >14 && daysSum <= 21)
+			return  bookSum/20;
+		if(daysSum >21 && daysSum <= 30)
+			return bookSum/25;
+		return bookSum;
 	}
 
 	public List<Book> getBookByReaderId(int rid) {
