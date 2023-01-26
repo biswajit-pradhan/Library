@@ -95,17 +95,7 @@ public class ReaderController {
 		
 	}
 	
-	/* GetTotalRent By ReaderId */
-	@GetMapping("/totalrent/reader/{rid}")
-	public ResponseEntity<Object> getTotalRentByReaderId(@PathVariable("rid") int rid) {
-		Optional<Reader> optional = readerService.getReaderById(rid);
-		if (!optional.isPresent())
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Reader id...");
-		Reader reader = optional.get();
-		List<Reader> reader=readerService.getReaderByID(rid);
-		int totalDays=readerBook.get(0).getDays();
-		Object totalCost=readerService.getTotalRentByReaderId(reader.getPrice(),totalDays);
-		return ResponseEntity.status(HttpStatus.OK).body(totalCost);
-	}
+
+
 
 }
