@@ -82,7 +82,7 @@ public class BookController {
 
 	@DeleteMapping("/delete/{bid}")
 	public ResponseEntity<String> deleteEmployee(@PathVariable("bid") int bid) {
-		bookService.deleteBookById(bid);
+		String s=bookService.deleteBookById(bid);
 		return ResponseEntity.status(HttpStatus.OK).body("Book deleted");
 	}
 	/* GetBook by PublisherId */

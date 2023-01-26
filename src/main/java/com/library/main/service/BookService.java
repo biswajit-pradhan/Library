@@ -20,9 +20,10 @@ public class BookService {
 	@Autowired
 	private AuthorRepository authorRepository;
 
-	public void postBook(Book book) {
+	public Book postBook(Book book) {
 
 		bookRepository.save(book);
+		return book;
 	}
 
 	public List<Book> getAllBook() {
@@ -35,8 +36,9 @@ public class BookService {
 		return optional;
 	}
 
-	public void deleteBookById(int bid) {
+	public String deleteBookById(int bid) {
 		bookRepository.deleteById(bid);
+		return "null";
 
 	}
 
